@@ -1,0 +1,14 @@
+.NavigatorButton
+{
+    background-color: orangered;
+    max-width: 100%;
+    opacity: 0.8;
+    width: 80%;
+
+
+}
+#Navigator{
+    max-width: 100%;
+    padding-left: 10%;
+    
+}

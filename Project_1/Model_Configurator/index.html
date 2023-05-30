@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+
+    
+
+    <div class="main">
+        <div class="containing">
+        <button type="button" id="click" onclick="clickhandler()">Wheel1!</button>
+        <button type="button" id="click1" onclick="clickhandler()">Wheel2!</button>
+        <button type="button" id="click2" onclick="clickhandler()">Wheel3!</button>
+        <button type="button" id="click3" onclick="clickhandler()">Wheel4!</button>
+        <button type="button" id="click4" onclick="clickhandler()">Car1!</button>
+        <button type="button" id="click5" onclick="clickhandler()">Car2!</button>
+        <button type="button" id="click6" onclick="clickhandler()">Car3!</button>
+        <button type="button" id="click7" onclick="clickhandler()">Car4!</button>
+        <button type="button" id="click8" onclick="clickhandler()">Red!</button>
+        <button type="button" id="click9" onclick="clickhandler()">Blue!</button>
+        <button type="button" id="click10" onclick="clickhandler()">Green!</button>
+        <button type="button" id="click11" onclick="clickhandler()">White!</button>
+        <button type="button" id="click12" onclick="clickhandler()">Grey!</button>
+        <button type="button" id="click13" onclick="clickhandler()">HatchBack!</button>
+        <button type="button" id="click14" onclick="clickhandler()">MiniVan!</button>
+        <ul class="list" id="myList"></ul>
+      </div>
+       <canvas id="container">
+        <style>
+          .main {
+            position: relative;
+            top: -0.33vh;
+            left: -0.33vw;
+            width: 100vw;
+            height: 100vh;
+          }
+          .containing {
+    position: absolute;
+    display: grid;
+    z-index: 99;
+    }
+    .list
+    {
+      height:300px; width:80%;
+      overflow: scroll;
+      list-style: none;
+      background-color: white;
+      z-index: 100;
+    }
+        </style>
+        
+       </canvas>
+    </div>
+
+    <script type="module" src="main.js"></script>
+    
+
+  </body>
+</html>
