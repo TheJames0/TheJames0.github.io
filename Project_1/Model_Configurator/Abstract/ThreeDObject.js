@@ -24,7 +24,7 @@ export class ThreeDObject
 
         // Load Model and load promise
         if(meshname != ""){
-            gltfLoader.load('assets/'+meshname+'.gltf', function (gltf){
+            gltfLoader.load('../../assets/'+meshname+'.gltf', function (gltf){
 
                 mesh = gltf.scene;
                 scene.add(mesh);

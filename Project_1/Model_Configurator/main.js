@@ -9,7 +9,7 @@ import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
 import { FlakesTexture } from 'three/examples/jsm/textures/FlakesTexture.js';
 import { ACESFilmicToneMapping, BasicShadowMap, CineonToneMapping, PCFShadowMap, PCFSoftShadowMap, RGB_PVRTC_2BPPV1_Format, Scene, Vector3, VSMShadowMap } from 'three';
 import { ThreeDObject } from './Abstract/ThreeDObject';
-import {BlendFunction, RenderPass, EffectComposer, EffectPass, BloomEffect, ChromaticAberrationEffect, GlitchEffect, ShockWaveEffect} from "postprocessing"
+import {BlendFunction, RenderPass, EffectComposer, EffectPass, BloomEffect, ChromaticAberrationEffect} from "postprocessing"
 import { RoofRailB,RoofRailA, WheelA,WheelB,WheelC,WheelD,WheelE, Empty } from './NonAbstractClasses/Parts';
 console.log("JS Loaded")
 export const scene = new THREE.Scene();
@@ -45,7 +45,7 @@ const controls = new OrbitControls(camera, renderer.domElement);
 const blend_loader = new GLTFLoader();
 var meshid;
 
-blend_loader.load('assets/3denv1.gltf', function ( gltf ) {
+blend_loader.load('../../assets/3denv1.gltf', function ( gltf ) {
   scene.add( gltf.scene );
   gltf.scene.name = '3denv';
 
@@ -89,7 +89,7 @@ var material = new THREE.MeshPhysicalMaterial();
 material.color.setHex(0xff1100)
 material.normalMap = normalMap3;
 material.normalScale =  new THREE.Vector2( 0.05, 0.05 )
-aotexture =  new THREE.TextureLoader().load( 'assets/obj/Car1/ao_bake4k.jpg' );
+aotexture =  new THREE.TextureLoader().load( '../../assets/obj/Car1/ao_bake4k.jpg' );
 aotexture.flipY = false;
 material.aoMap = aotexture;
 
@@ -98,7 +98,7 @@ material.aoMapIntensity = 7;
 var glassmaterial = new THREE.MeshStandardMaterial();
 glassmaterial.color.setHex(0x262626);
 var tyrematerial = new THREE.MeshStandardMaterial();
-var tyretexturenormal =  new THREE.TextureLoader().load( 'assets/tireNormalMap.png' );
+var tyretexturenormal =  new THREE.TextureLoader().load( '../../assets/tireNormalMap.png' );
 tyrematerial.normalMap = tyretexturenormal;
 
 tyrematerial.color.setHex(0x030303)
@@ -137,16 +137,16 @@ document.getElementById("click1").onclick = function(){testcar.applyWheelA();set
 document.getElementById("click2").onclick = function(){testcar.applyWheelB();setClearance(testcar.sockets[0].part.groundclearance);}
 document.getElementById("click3").onclick = function(){testcar.applyWheelC();setClearance(testcar.sockets[0].part.groundclearance);}
 document.getElementById("click4").onclick = function(){if(testcar != null){testcar.delete();}testcar = new CarB();
-aotexture =  new THREE.TextureLoader().load( 'assets/obj/Car1/ao_bake4k.jpg' );
+aotexture =  new THREE.TextureLoader().load( '../../assets/obj/Car1/ao_bake4k.jpg' );
 material.aoMap = aotexture;aotexture.flipY = false;setClearance(testcar.sockets[0].part.groundclearance);}
 document.getElementById("click5").onclick = function(){if(testcar != null){testcar.delete();}testcar = new CarA();
-  aotexture =  new THREE.TextureLoader().load( 'assets/obj/Car2/ao_bake4k.jpg' );
+  aotexture =  new THREE.TextureLoader().load( '../../assets/obj/Car2/ao_bake4k.jpg' );
   material.aoMap = aotexture;aotexture.flipY = false;setClearance(testcar.sockets[0].part.groundclearance);}
 document.getElementById("click6").onclick = function(){if(testcar != null){testcar.delete();}testcar = new CarC();
-  aotexture =  new THREE.TextureLoader().load( 'assets/obj/Car3/ao_bake4k.jpg' );
+  aotexture =  new THREE.TextureLoader().load( '../../assets/obj/Car3/ao_bake4k.jpg' );
   material.aoMap = aotexture;aotexture.flipY = false;setClearance(testcar.sockets[0].part.groundclearance);}
 document.getElementById("click7").onclick = function(){if(testcar != null){testcar.delete();}testcar = new CarD();
-  aotexture =  new THREE.TextureLoader().load( 'assets/obj/Car4/ao_bake4k.jpg' );
+  aotexture =  new THREE.TextureLoader().load( '../../assets/obj/Car4/ao_bake4k.jpg' );
   material.aoMap = aotexture;aotexture.flipY = false;setClearance(testcar.sockets[0].part.groundclearance);}
 document.getElementById("click8").onclick = function(){material.color.setHex(0xff1100)}
 document.getElementById("click9").onclick = function(){material.color.setHex(0x197bd1)}
@@ -154,10 +154,10 @@ document.getElementById("click10").onclick = function(){material.color.setHex(0x
 document.getElementById("click11").onclick = function(){material.color.setHex(0xcfcfcf)}
 document.getElementById("click12").onclick = function(){material.color.setHex(0x363636)}
 document.getElementById("click13").onclick = function(){if(testcar != null){testcar.delete();}testcar = new CarE();
-aotexture =  new THREE.TextureLoader().load( 'assets/obj/Car5/ao_bake.001.png' );
+aotexture =  new THREE.TextureLoader().load( '../../assets/obj/Car5/ao_bake.001.png' );
   material.aoMap = aotexture;aotexture.flipY = false;setClearance(testcar.sockets[0].part.groundclearance);}
 document.getElementById("click14").onclick = function(){if(testcar != null){testcar.delete();}testcar = new CarF();
-aotexture =  new THREE.TextureLoader().load( 'assets/obj/Car6/ao_bake.jpg' );
+aotexture =  new THREE.TextureLoader().load( '../../assets/obj/Car6/ao_bake.jpg' );
   material.aoMap = aotexture;aotexture.flipY = false;setClearance(testcar.sockets[0].part.groundclearance);}
   //Selected socket vars
   var final;
@@ -311,7 +311,6 @@ composer.addPass(new RenderPass(scene,camera));
 //BLOOM
 composer.addPass(new EffectPass(camera, new BloomEffect(BlendFunction.ADD,0.4,0,0.4)));
 composer.addPass(new EffectPass(camera, new ChromaticAberrationEffect(BlendFunction.Add,0.01,0.01)));
-composer.addPass(new EffectPass(camera, new ShockWaveEffect(camera,new Vector3(0,0,0),)));
 //traversetosetmaterials
 function setMaterials()
 {
