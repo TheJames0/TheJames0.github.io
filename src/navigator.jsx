@@ -1,7 +1,9 @@
 import './navigator.css'
+import Button from './button'
 const NavigatorButton = (props) =>
 {
-    return (<button className="NavigatorButton">{props.element}</button>)
+    
+    return <Button className="NavigatorButton" text={props.element}/>
 }
 const Navigator = (props) => {
     return (
