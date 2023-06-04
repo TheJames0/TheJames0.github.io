@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import Toolbar from './toolbar.jsx'
 import Branch from './branch.jsx'
+import Viewport from './viewport.jsx'
+import Button from './button.jsx'
 const Background = () => {
 
   return (
@@ -12,10 +14,12 @@ const Background = () => {
     </>
   )
 }
-const project1_iframe = <iframe src="Project_1/Model_Configurator/index.html" width="2000" height="2000"/>
+
+
+const viewport1 = <Viewport url="Project_1/Model_Configurator/index.html"/>
 const project1_description = <p >This goal of this project was to produce a functioning customization system implemented with ThreeJS</p>
 const child2 = <Branch text1="Description"  x="700" y="1020" parentx="600" parenty="620" mainbody={project1_description}/>;
-const child5 = <Branch text1="Project" text2="Viewport" x="300" y="1620" parentx="600" parenty="620" viewport={project1_iframe} />;
+const child5 = <Branch text1="Project" text2="Viewport" x="300" y="1620" parentx="600" parenty="620" viewport={viewport1} />;
 const child1 = <Branch text1="Project" text2="Car-Configurator" x="600" y="620" child={[child2,child5]} parentx="0" parenty="20"/>;
 
 const child4 = <Branch text1="Child of" text2="Test 2" x="-400" y="1020" parentx="-200" parenty="620" />;

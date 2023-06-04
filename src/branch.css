@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 h1{
     font-family: 'Bebas Neue', sans-serif;
     text-align: center;
@@ -7,9 +8,10 @@ h1{
     padding: 40px;
     padding-top: 0px;
     padding-bottom: 0px;
-    z-index: -999;
+    z-index: -200   ;
 }
 h2{
+    
     text-align: center;
     font-size:60px;
     font-family: 'Bebas Neue', sans-serif;
@@ -18,15 +20,15 @@ h2{
     padding: 40px;
     padding-top: 0px;
     padding-bottom: 0px;
-    z-index: -999;
+    z-index: -200;
 }
 .Branch{
-    
+    position: absolute;
     width: fit-content;
     height: fit-content;
     border:5px #ff4500;
     border-style: dashed;
-    z-index: 999;
+    z-index: 200;
 
     -webkit-transition: all 1s linear;
     -moz-transition: all 1s linear;
@@ -34,11 +36,12 @@ h2{
     transition: all 1s linear;
 }
 .Hovered{
+    position: absolute;
     width: fit-content;
     height: fit-content;
     border:5px #ff7745;
     border-style: dashed;
-    z-index: 999;
+    z-index: 200;
     color: #ff4500;
     background-color: #ff44004d;
 
@@ -48,11 +51,12 @@ h2{
     transition: all 0.5s linear;
 }
 .Clicked{
+    position: absolute;
     width: fit-content;
     height: fit-content;
     border:4px #ff6600;
     border-style:dashed;
-    z-index: 999;
+    z-index: 200;
     color: #ff4500;
     background-color: #ff44001e;
     translate: -3px -3px;

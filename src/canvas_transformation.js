@@ -5,7 +5,6 @@ var prevscale = 0.5;
 var scale = 0.5;
 var mouse_down;
 let translated = { x: 0, y: 0 };
-
 window.addEventListener("DOMContentLoaded", (event) => {
     viewport = document.getElementById('transformable');
     //Add mouse event listeners
@@ -62,14 +61,16 @@ function translateCanvas(event)
     var difference_y;
     if(mouse_down)
     {
+        
         difference_x = event.clientX - last_position_x;
         difference_y = event.clientY - last_position_y;
-    
+        
         translate(difference_x,difference_y,scale,false);
     }
 
     last_position_x = event.clientX;
     last_position_y = event.clientY;
+    
 }
 function mouseDragStart(event) 
 {
@@ -107,6 +108,5 @@ function translate( deltaX, deltaY,scale, reset)
     {
         final_transform = 'translate(' + (translationX + deltaX) + 'px, ' + (translationY + deltaY) + 'px) scale('+scale+','+scale+')';
     }
-    
     viewport.style.transform = final_transform;
 }

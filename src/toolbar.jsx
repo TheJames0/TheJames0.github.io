@@ -1,6 +1,7 @@
 import './toolbar.css'
 import Navigator from './navigator.jsx';
 import image1 from '/src/assets/reset.png';
+import Button from './button';
 const Toolbar = (props) => {
     const handleReset = () => 
     {
@@ -10,13 +11,11 @@ const Toolbar = (props) => {
     return (
       <>
         <div id ="Toolbar">
-        <button onClick={handleReset} className = "toolbar-button" id="reset">
-        <img className = "toolbar-button-image" src={image1}></img>
-        </button>
+        <Button click={handleReset} className="toolbar-button" text = "" icon={image1} iconclassName="toolbar-button-image"/>
+        
         <Navigator elements={props.navelements}/>
         </div>
       </>
     )
   }
-  
   export default Toolbar

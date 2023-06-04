@@ -35,7 +35,7 @@ const textureLoader = new THREE.TextureLoader();
 renderer.setPixelRatio(1);
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor( 0xffffff, 0);
-renderer.shadowMap.enabled = true;
+renderer.shadowMap.enabled = false;
 renderer.depthBuffer = true;
 renderer.depthTexture = new THREE.DepthTexture();
 renderer.toneMappingExposure = 1.5;
@@ -57,23 +57,6 @@ blend_loader.load('../../assets/3denv1.gltf', function ( gltf ) {
   console.error( error );
   
 } );
-
-
-//HDR Enviroment
-/*
-new RGBELoader()
-					.setPath( 'assets/' )
-					.load( 'alps_field_4k.hdr', function ( texture ) {
-
-						texture.mapping = THREE.EquirectangularReflectionMapping;
-
-						scene.background = texture;
-						scene.environment = texture;
-          });
-
-
-				//
-*/
 scene.background = new THREE.Color( 0x000000  );
 
       
@@ -81,9 +64,9 @@ scene.background = new THREE.Color( 0x000000  );
 const normalMap3 = new THREE.CanvasTexture( new FlakesTexture() );
 							normalMap3.wrapS = THREE.RepeatWrapping;
 							normalMap3.wrapT = THREE.RepeatWrapping;
-							normalMap3.repeat.x = 50;
-							normalMap3.repeat.y = 50;
-							normalMap3.anisotropy = 16;
+							normalMap3.repeat.x = 15;
+							normalMap3.repeat.y = 15;
+							normalMap3.anisotropy = 8;
 //Car AO
 var aotexture;
 
@@ -110,15 +93,13 @@ metalmaterial.metalness = 1;
 metalmaterial.roughness = 0.32;
 
 material.metalness = 1;
-                material.roughness = 0.3;
-                material.envMapIntensity = 5;
-                
-                glassmaterial.metalness = 1;
-                glassmaterial.roughness = 0.01;
-                glassmaterial.envMapIntensity = 1;
-                
-                glassmaterial.opacity = 0.996;
-                glassmaterial.transparent = true;
+material.roughness = 0.3;
+material.envMapIntensity = 5;      
+glassmaterial.metalness = 1;
+glassmaterial.roughness = 0.01;
+glassmaterial.envMapIntensity = 1;       
+glassmaterial.opacity = 0.996;
+glassmaterial.transparent = true;
 function setClearance(clearance)
 {
   scene.traverse(obj => {
@@ -264,43 +245,19 @@ setMaterials();
 }
 //Add pointlights
 const pointLight = new THREE.SpotLight(0xffffff, 5, 20); //Points Light
-pointLight.castShadow = true;
 pointLight.position.set(10, 15, 0);
-
-pointLight.shadow.mapSize.width = 4096;
-pointLight.shadow.mapSize.height = 4096;
-pointLight.shadow.radius = 40;
 const pointLightb = new THREE.SpotLight(0xffffff, 5, 20); //Points Light
-pointLightb.castShadow = true;
 pointLightb.position.set(-10, 15, 0);
-
-pointLightb.shadow.mapSize.width = 4096;
-pointLightb.shadow.mapSize.height = 4096;
-pointLightb.shadow.radius = 40;
 const pointLightc = new THREE.SpotLight(0xffffff, 5, 12); //Points Light
-pointLightc.castShadow = true;
 pointLightc.position.set(0, 15, 10);
 
-pointLightc.shadow.mapSize.width = 4096;
-pointLightc.shadow.mapSize.height = 4096;
-pointLightc.shadow.radius = 40;
 const pointLightd = new THREE.SpotLight(0xffffff, 5, 12); //Points Light
-pointLightd.castShadow = true;
 pointLightd.position.set(-10, 2, 0);
-
-pointLightd.shadow.mapSize.width = 4096;
-pointLightd.shadow.mapSize.height = 4096;
-pointLightd.shadow.radius = 40;
 const pointLighte = new THREE.SpotLight(0xffffff, 5, 12); //Points Light
-pointLighte.castShadow = true;
 pointLighte.position.set(10, 2, 0);
-
-pointLighte.shadow.mapSize.width = 4096;
-pointLighte.shadow.mapSize.height = 4096;
-pointLighte.shadow.radius = 40;
 scene.add(pointLight,pointLightb,pointLightc,pointLightd,pointLighte);
 //Enviroment reflections
- var cubeRenderTarget = new THREE.WebGLCubeRenderTarget( 1024 ,);
+ var cubeRenderTarget = new THREE.WebGLCubeRenderTarget( 248 ,);
 				cubeRenderTarget.texture.type = THREE.HalfFloatType;
 var cubeCamera = new THREE.CubeCamera( 1, 2000, cubeRenderTarget );
 cubeCamera.position.set(0, 5, 0);
@@ -350,7 +307,6 @@ function onWindowResize() {
 
   renderer.setSize( window.innerWidth, window.innerHeight );
 
-  render();
 
 }
 
