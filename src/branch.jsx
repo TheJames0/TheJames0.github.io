@@ -1,18 +1,32 @@
 import React, { useState, useEffect} from "react";
-import ReactDOM from 'react-dom';
+import ReactDOM, { render } from 'react-dom';
 import './branch.css';
-
+import Button from "./button";
+import Utilities from "./Utilities";
 const  Branch = (props) => {
   const [showHover, setShowHover] = useState(false);
   const [branchOpen, setbranchOpen] = useState(false);
   const [isPositionStart, setisPositionStart] = useState(false);
   const [isChildUnload, setisChildUnload] = useState(true)
+  const [EmbeddedButtonHover, setEmbeddedButtonHover] = useState(false);
+  useEffect(() => {
+    if(EmbeddedButtonHover)
+    {
+      setShowHover(false)
+    }
+    else
+    {
+    }
+  },[EmbeddedButtonHover]);
+  const handleDataUpdate = (newData) => {
+    setEmbeddedButtonHover(newData);
+  };
+
   function closeBranch()
   {
     
 
     setisChildUnload(true)
-    console.log("close")
     setTimeout(() => {
       //After timeout
       setbranchOpen(false)
@@ -22,17 +36,10 @@ const  Branch = (props) => {
   function openBranch()
   {
     setisChildUnload(false)
-    console.log("open")
     setbranchOpen(true);
     
   }
-  function test() 
-  {
-    setTimeout(() => {
-      //After timeout
-      setbranchOpen(false)
-    }, 200)
-  }
+ 
     //Called on parent_unloading state change
   useEffect(() => {
     if(props.parent_unloading == 'true')
@@ -46,13 +53,14 @@ const  Branch = (props) => {
       setisPositionStart(true)
     }
     } , [props.parent_unloading]);
-
-
-
-  function AddExtraProps(Component, extraProps) 
+  function handleEmbeddedButton()
   {
-    return <Component.type {...Component.props} {...extraProps} />;
+
+    var a = React.cloneElement(props.viewport, {embed_hover: handleDataUpdate});
+    
+    return a;
   }
+  
   function handleChildren()
   {
     var newchild = [];
@@ -72,16 +80,15 @@ const  Branch = (props) => {
     {
     for(let i = 0; i < props.child.length; i++)
     {
-      const test = AddExtraProps(props.child[i],additionalState);
-      newchild.push(test);
+      const prop1 = Utilities.propAdd(props.child[i],[additionalState]);
+      newchild.push(prop1);
     }
   }
   else
   {
-    const test = AddExtraProps(props.child,additionalState);
+    const test = Utilities.propAdd(props.child,[additionalState]);
     newchild.push(test);
   }
-    console.log(newchild)
     return newchild;
   }
 
@@ -132,7 +139,7 @@ const  Branch = (props) => {
       <div className={branchOpen ? "Clicked" : (!showHover ? "Branch" : "Hovered")}>
       <h1>{props.text1}</h1>
       <h2>{props.text2}</h2>
-       <>{props.viewport}</>
+      {props.viewport && handleEmbeddedButton()}
        <>{props.mainbody}</>
       </div>
       </div>

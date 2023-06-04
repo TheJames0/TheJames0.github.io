@@ -11,7 +11,7 @@ const Toolbar = (props) => {
     return (
       <>
         <div id ="Toolbar">
-        <Button eventhandler={handleReset} className="toolbar-button" text = "" icon={image1} iconclassName="toolbar-button-image"/>
+        <Button click={handleReset} className="toolbar-button" text = "" icon={image1} iconclassName="toolbar-button-image"/>
         
         <Navigator elements={props.navelements}/>
         </div>

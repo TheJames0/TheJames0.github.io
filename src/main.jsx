@@ -14,7 +14,9 @@ const Background = () => {
     </>
   )
 }
-const viewport1 = <Viewport url="Project_1/Model_Configurator/index.html" width="2000" height="2000"/>
+
+
+const viewport1 = <Viewport url="Project_1/Model_Configurator/index.html"/>
 const project1_description = <p >This goal of this project was to produce a functioning customization system implemented with ThreeJS</p>
 const child2 = <Branch text1="Description"  x="700" y="1020" parentx="600" parenty="620" mainbody={project1_description}/>;
 const child5 = <Branch text1="Project" text2="Viewport" x="300" y="1620" parentx="600" parenty="620" viewport={viewport1} />;

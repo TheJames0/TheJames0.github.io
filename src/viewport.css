@@ -1,5 +1,23 @@
+.Viewport_Enlarged
+{
+    transform:translate(0px,0px);
+    position:relative;
+    width: 200vw;
+    height: 200vh;
+    top: 0;
+    left: 0;
+    z-index: 800;
+    transition: all;
+    transition-duration: 1s;
+}
 .Viewport
 {
-    align-items: end;
-    align-content: end;
+    position:relative;
+    width: 130vw;
+    height: 130vh;
+    left: 0;
+    top: 0;
+    z-index: 300;
+    transition: all;
+    transition-duration: 1s;
 }
