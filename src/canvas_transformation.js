@@ -1,8 +1,8 @@
 var viewport;
 var last_position_x = 0;
 var last_position_y = 0;
-var prevscale = 0.5;
-var scale = 0.5;
+var prevscale = 1;
+var scale = 1;
 var mouse_down;
 let translated = { x: 0, y: 0 };
 window.addEventListener("DOMContentLoaded", (event) => {
@@ -15,6 +15,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
     //Zoom function event listner
     //window.addEventListener('wheel',scaleCanvas);
     window.addEventListener('reset', recenterCanvas);
+    //setTranslation event listener
+    window.addEventListener('setTranslation',setTranslationEvent)
     console.log("website loaded");
 
 });
@@ -101,12 +103,17 @@ function translate( deltaX, deltaY,scale, reset)
     //Is reset true?
     if(reset)
     {
-        final_transform = 'translate(' + (window.innerWidth-1000) + 'px, ' + (window.innerHeight-600) + 'px) scale(0.5,0.5)';
+        final_transform = 'translate(' + (window.innerWidth-1000) + 'px, ' + (window.innerHeight-600) + 'px)';
         console.log("canvas recentered");
     }
     else
     {
-        final_transform = 'translate(' + (translationX + deltaX) + 'px, ' + (translationY + deltaY) + 'px) scale('+scale+','+scale+')';
+        final_transform = 'translate(' + (translationX + deltaX) + 'px, ' + (translationY + deltaY) + 'px)';
     }
     viewport.style.transform = final_transform;
+}
+
+function setTranslationEvent(event)
+{
+    viewport.style.transform = 'translate(' + (event.detail[0]) + 'px, ' + (event.detail[1]) + 'px) ';
 }

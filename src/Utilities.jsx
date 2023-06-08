@@ -15,7 +15,15 @@ class Utilities
     var transformMatrix = new DOMMatrix(computedStyle.transform);
     var OppositeTranslationX = -transformMatrix.m41*2;
     var OppositeTranslationY = -transformMatrix.m42*2;
-    return [(OppositeTranslationX-300), (OppositeTranslationY-1980)];
+    return [(OppositeTranslationX) +2680, (OppositeTranslationY) + 1200];
+
+  }
+  static setCanvasTranslation(translation)
+  {
+    console.log(translation);
+    const event = new CustomEvent('setTranslation', { detail: [translation[0],translation[1]] });
+    window.dispatchEvent(event);
+    
 
   }
 }

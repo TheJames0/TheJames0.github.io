@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-h1{
+.title1
+{
     font-family: 'Bebas Neue', sans-serif;
     text-align: center;
     font-size:80px;
@@ -8,40 +9,63 @@ h1{
     padding: 40px;
     padding-top: 0px;
     padding-bottom: 0px;
-    z-index: -200   ;
+    z-index: 0   ;
+}
+.title2
+{
+    font-family: 'Bebas Neue', sans-serif;
+    text-align: center;
+    font-size:70px;
+    color:rgb(255, 94, 0);
+    overflow-wrap:normal;
+    padding: 40px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    z-index: 0   ;
+}
+h1{
+    font-family: 'Bebas Neue', sans-serif;
+    text-align: center;
+    font-size:40px;
+    color:rgb(255, 94, 0);
+    overflow-wrap:normal;
+    padding: 40px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    z-index: 0   ;
 }
 h2{
     
     text-align: center;
-    font-size:60px;
+    font-size:30px;
     font-family: 'Bebas Neue', sans-serif;
     color:#ff4500;
     overflow-wrap:normal;
     padding: 40px;
     padding-top: 0px;
     padding-bottom: 0px;
-    z-index: -200;
+    z-index: 0;
 }
 .Branch{
-    position: absolute;
+    position: sticky;
     width: fit-content;
     height: fit-content;
     border:5px #ff4500;
     border-style: dashed;
-    z-index: 200;
+    z-index: 0;
 
-    -webkit-transition: all 1s linear;
-    -moz-transition: all 1s linear;
-    -o-transition: all 1s linear;
-    transition: all 1s linear;
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    transition: all 0.5s linear;
 }
 .Hovered{
-    position: absolute;
+    position: sticky;
     width: fit-content;
     height: fit-content;
     border:5px #ff7745;
     border-style: dashed;
-    z-index: 200;
+    z-index: 0;
     color: #ff4500;
     background-color: #ff44004d;
 
@@ -51,12 +75,12 @@ h2{
     transition: all 0.5s linear;
 }
 .Clicked{
-    position: absolute;
+    position: sticky;
     width: fit-content;
     height: fit-content;
     border:4px #ff6600;
     border-style:dashed;
-    z-index: 200;
+    z-index: 0;
     color: #ff4500;
     background-color: #ff44001e;
     translate: -3px -3px;
@@ -66,5 +90,10 @@ h2{
     transition: all 0.5s linear;
 }
 p{
-    font-size: 40px;
+    font-size: 20px;
+    color: orangered;
+}
+.arrow
+{
+    position:absolute;
 }

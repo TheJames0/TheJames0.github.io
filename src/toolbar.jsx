@@ -13,7 +13,7 @@ const Toolbar = (props) => {
         <div id ="Toolbar">
         <Button click={handleReset} className="toolbar-button" text = "" icon={image1} iconclassName="toolbar-button-image"/>
         
-        <Navigator elements={props.navelements}/>
+        <Navigator elements={props.navelements} handlers={props.handlers}/>
         </div>
       </>
     )

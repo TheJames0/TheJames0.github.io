@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "arrow-line": "^0.7.5",
     "postprocessing": "^6.31.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-xarrows": "^2.0.2",
     "three": "^0.152.2"
   },
   "devDependencies": {

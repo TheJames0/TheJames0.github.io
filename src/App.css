@@ -1,29 +1,30 @@
 #transformable {
-  position: fixed;
+  position: relative;
   left: 0px;
   top: 0px;
   width: 0px;
   height: 0px;
   text-align: center;
   overflow: none;
-  transform: translate(900px,300px)scale(0.5,0.5);
+  transform: translate(900px,300px);
   transform-origin: 0 0;
   -webkit-transform-origin: 0 0;
+  z-index: -400;
 
 }
 #background
 {
-  position: absolute;
+  position: relative;
   top: -20000px;
   left: -20000px;
   width: 40000px;
   height: 40000px;
   background-image: url('assets/prism.png');
-  scale: 150%;
+  scale: 50%;
   z-index: -999;
 }
 body{
-  position: fixed;
+  position: relative;
   top: 0px;
   left: 0px;
   width: auto;

@@ -18,14 +18,12 @@ const  Viewport = (props) => {
     {
         if(thisClickState)
         {
-            console.log("in click state")
             const [x, y] = Utilities.getCanvasTranslation();
-            return {transform: `translate(${x}px, ${y}px)`,transition: 'all 0.5s'};
+            return {transform: `translate(${x}px, ${y}px)`};
         }
         else
         {
-            console.log("not in click state")
-            return {transform: `translate(${0}px, ${0}px)`,transition: 'all 0.5s'};
+            return {transform: `translate(${0}px, ${0}px)`};
         }
     }
     const viewport_enlarge_Click = (clickState) =>
@@ -34,17 +32,19 @@ const  Viewport = (props) => {
         if(clickState)
         {
             setViewportClass("Viewport_Enlarged");
+            Utilities.setCanvasTranslation([3000,3000]);
         }
         else
         {
             setViewportClass("Viewport");
+            Utilities.setCanvasTranslation([-props.x,-props.y]);
         }
         return !clickState
     }
 return(
     <div  style={ViewportTranslation}>
     <Button className={"viewport_enlarge_button"} text="Enlarge" embed_hover={props.embed_hover} click={viewport_enlarge_Click}/>
-    <iframe className = {ViewportClass} src={props.url}/>
+    <iframe className = {ViewportClass} src={props.url + '?wmode=transparent'} allowtransparency="true"/>
     </div>
 );
 }
