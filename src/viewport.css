@@ -2,22 +2,20 @@
 {
     transform:translate(0px,0px);
     position:relative;
-    width: 200vw;
-    height: 200vh;
+    width: 100vw;
+    height: 100vh;
     top: 0;
     left: 0;
-    z-index: 800;
-    transition: all;
-    transition-duration: 1s;
+    z-index: 900;
+    transition: width 0.5s;
 }
 .Viewport
 {
     position:relative;
-    width: 130vw;
-    height: 130vh;
+    width: 60vw;
+    height: 60vh;
     left: 0;
     top: 0;
-    z-index: 300;
-    transition: all;
-    transition-duration: 1s;
+    z-index: 900;
+    transition: width 0.5s;
 }
