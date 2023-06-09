@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef} from "react";
-import ReactDOM, { render } from 'react-dom';
 import './branch.css';
-import Button from "./button";
 import Utilities from "./Utilities";
 import Xarrow,{useXarrow} from "react-xarrows";
 import { v4 as uuid } from 'uuid';
@@ -33,7 +31,6 @@ const  Branch = (props) => {
   //On Component Mount
   useEffect(() => {
     const interval = setInterval(() => updateXarrow(), 1);
-    if(props.nav_manage)
     return () => {  
       clearInterval(interval);
     };
@@ -117,12 +114,18 @@ const  Branch = (props) => {
     for(let i = 0; i < props.child.length; i++)
     {
       const keypropvalue = props.child[i].key;
-      const keyprop = {key:keypropvalue}
+      const keyprop = {key:keypropvalue};
 
+      const child_parent_x = props.x;
+      const child_parent_x_prop = {parentx:child_parent_x};
+
+      const child_parent_y = props.y;
+      const child_parent_y_prop = {parenty:child_parent_y};
+      
       const parentref = unique_id;
       const parentprop = {refToParent:parentref}
 
-      const prop1 = Utilities.propAdd(props.child[i],[additionalState, keyprop, parentprop]);
+      const prop1 = Utilities.propAdd(props.child[i],[additionalState, keyprop, parentprop, child_parent_x_prop, child_parent_y_prop]);
       newchild.push(prop1);
     }
   }
@@ -131,10 +134,16 @@ const  Branch = (props) => {
     const keypropvalue = props.child.key;
     const keyprop = {key:keypropvalue}
 
+    const child_parent_x = props.x;
+    const child_parent_x_prop = {parentx:child_parent_x};
+
+    const child_parent_y = props.y;
+    const child_parent_y_prop = {parenty:child_parent_y};
+
     const parentref = unique_id;
     const parentprop = {refToParent:parentref}
 
-    const test = Utilities.propAdd(props.child,[additionalState,keyprop,parentprop]);
+    const test = Utilities.propAdd(props.child,[additionalState,keyprop,parentprop,child_parent_x_prop,child_parent_y_prop]);
     newchild.push(test);
   }
     return newchild;
@@ -144,16 +153,28 @@ const  Branch = (props) => {
 
   return (
     <>
-    {props.refToParent ? <Xarrow className="arrow"
+    {props.refToParent 
+    ? branchOpen 
+    ? <Xarrow className="arrow" 
                 start={props.refToParent} //can be react ref
                 end={unique_id} //or an id
                 startAnchor={"auto"}
                 endAnchor={"top"}
                 color="orangered"
-                dashness={{strokeLen: 15, nonStrokeLen: 20}}
-                showHead={false }
-                />
-              : <></>}
+                dashness={{strokeLen: 20, nonStrokeLen: 8, animation:3  }}
+                showHead={false }  /> 
+                :
+                <Xarrow className="arrow"
+                start={props.refToParent} //can be react ref
+                end={unique_id} //or an id
+                startAnchor={"auto"}
+                endAnchor={"top"}
+                color="orangered"
+                dashness={{strokeLen: 15, nonStrokeLen: 20, animation:0}}
+                showHead={false }  />
+              : 
+              <></>
+              }
             
       
       <div  style= 
@@ -200,6 +221,7 @@ const  Branch = (props) => {
           }
           else
           {
+            if(props.child)
             openBranch()
           }
           
