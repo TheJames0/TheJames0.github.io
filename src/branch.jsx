@@ -4,6 +4,8 @@ import './branch.css';
 import Button from "./button";
 import Utilities from "./Utilities";
 import Xarrow,{useXarrow} from "react-xarrows";
+import { v4 as uuid } from 'uuid';
+
 
 const  Branch = (props) => {
   const [showHover, setShowHover] = useState(false);
@@ -11,7 +13,7 @@ const  Branch = (props) => {
   const [isPositionStart, setisPositionStart] = useState(false);
   const [isChildUnload, setisChildUnload] = useState(true)
   const [EmbeddedButtonHover, setEmbeddedButtonHover] = useState(false);
-  const thisRef = useRef(null)
+  const unique_id = uuid();
   const updateXarrow = useXarrow();
   if(props.nav_manage)
   useEffect(() => {update()},[props.nav_manage.state]);
@@ -117,7 +119,7 @@ const  Branch = (props) => {
       const keypropvalue = props.child[i].key;
       const keyprop = {key:keypropvalue}
 
-      const parentref = thisRef;
+      const parentref = unique_id;
       const parentprop = {refToParent:parentref}
 
       const prop1 = Utilities.propAdd(props.child[i],[additionalState, keyprop, parentprop]);
@@ -129,7 +131,7 @@ const  Branch = (props) => {
     const keypropvalue = props.child.key;
     const keyprop = {key:keypropvalue}
 
-    const parentref = thisRef;
+    const parentref = unique_id;
     const parentprop = {refToParent:parentref}
 
     const test = Utilities.propAdd(props.child,[additionalState,keyprop,parentprop]);
@@ -144,7 +146,7 @@ const  Branch = (props) => {
     <>
     {props.refToParent ? <Xarrow className="arrow"
                 start={props.refToParent} //can be react ref
-                end={thisRef} //or an id
+                end={unique_id} //or an id
                 startAnchor={"auto"}
                 endAnchor={"top"}
                 color="orangered"
@@ -204,7 +206,7 @@ const  Branch = (props) => {
           
         }}>
       
-      <div ref={thisRef} className={branchOpen && props.child ? "Clicked" : (showHover && props.child ? "Hovered" : "Branch")}>
+      <div id={unique_id} className={branchOpen && props.child ? "Clicked" : (showHover && props.child ? "Hovered" : "Branch")}>
       
       <h1>{props.text1}</h1>
       <h2>{props.text2}</h2>
