@@ -31,13 +31,17 @@ const  Viewport = (props) => {
         setthisClickState(clickState);
         if(clickState)
         {
+            //Disable navbar on enlarge
+            props.navCall.set_State(false);
             setViewportClass("Viewport_Enlarged");
             Utilities.setCanvasTranslation([3000,3000]);
         }
         else
         {
+            //Enable navbar on enlarge
+            props.navCall.set_State(true);
             setViewportClass("Viewport");
-            Utilities.setCanvasTranslation([-props.x,-props.y]);
+            Utilities.setCanvasTranslation([-props.x + 300,-props.y + 300]);
         }
         return !clickState
     }
