@@ -1,9 +1,22 @@
 import React,{useEffect,useState} from "react";
+import { Color } from "three";
 function Chat_Content() {
     const [content, setContent] = useState([]);
     const [reqUpdate,setreqUpdate] = useState(false);
     const [nameBox,setnameBox] = useState("");
     const [messageBox,setmessageBox] = useState("");
+    const stringToColour = (str,bordering) =>  {
+      var hash = 0;
+      for (var i = 0; i < str.length; i++) {
+          hash = str.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      var colour = '#';
+      for (var i = 0; i < 3; i++) {
+          var value = (hash >> (i * 8)) & 0xFF;
+          colour += ('00' + value.toString(16)).substr(-2);
+      }
+      return ({backgroundColor:colour,padding:'10px',border: '5px solid rgba(0, 0, 0, 0.1)',overflowX:'wrap'});
+  }
     async function getUpdateStatus()
     {
       let results = await fetch(`https://chat-server-production-d84a.up.railway.app/chat/update_status`).then(response => response.text());
@@ -42,12 +55,12 @@ function Chat_Content() {
     return (
       <>
       
-      <div style={{position:'absolute',top:'10%',height:'50 %',width:'100%',maxHeight:'80%',overflowY:'scroll',backgroundColor:'lightskyblue'}}>
+      <div style={{position:'absolute',top:'10%',height:'50 %',width:'100%',maxHeight:'80%',maxWidth:'100%',overflowY:'scroll'}}>
       {content.map((mess) => (
-        <p key={mess.id}>
+        <div key={mess.id} style={stringToColour(mess.name)}>
           <span>{ mess.name + ' :   ' }</span>
-          <span>{mess.message + ' ' }</span>
-        </p>
+          <p style={{whiteSpace: 'pre-wrap',overflowWrap: 'break-word'}}>{mess.message + ' ' }</p>
+        </div>
       ))}
     </div>
     <div style={{top:'93%',position:'fixed',display:'flex',backgroundColor:"lightblue"}}>
