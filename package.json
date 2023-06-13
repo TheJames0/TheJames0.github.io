@@ -1,7 +1,7 @@
 {
   "name": "portfolio",
   "private": true,
-  "proxy": "https://thejames0.github.io:1234",
+  "proxy": "http://localhost:1234",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -20,7 +20,8 @@
     "react-dom": "^18.2.0",
     "react-xarrows": "^2.0.2",
     "three": "^0.152.2",
-    "uuidv4": "^6.2.13"
+    "uuidv4": "^6.2.13",
+    "vite-express": "^0.9.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
