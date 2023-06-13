@@ -6,7 +6,7 @@ function Chat_Content() {
     const [messageBox,setmessageBox] = useState("");
     async function getUpdateStatus()
     {
-      let results = await fetch(`chat-server-production-d84a.up.railway.app/chat/update_status`).then(response => response.text());
+      let results = await fetch(`https://chat-server-production-d84a.up.railway.app/chat/update_status`).then(response => response.text());
       console.log(results)
       if(results == 'true')
       {
@@ -18,13 +18,13 @@ function Chat_Content() {
     }
     async function getData()
     {
-      let results = await fetch(`chat-server-production-d84a.up.railway.app/chat`,{}).then(response => response.json())
+      let results = await fetch(`https://chat-server-production-d84a.up.railway.app/chat`,{}).then(response => response.json())
             .then(json => {return json});
             setContent(results)
     }
     async function sendData()
     {
-      const result = fetch('chat-server-production-d84a.up.railway.app/post', {
+      const result = fetch('https://chat-server-production-d84a.up.railway.app/chat/post', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({name: nameBox, message: messageBox})
