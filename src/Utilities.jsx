@@ -13,11 +13,20 @@ class Utilities
     const viewport = document.getElementById('transformable');
     var computedStyle = window.getComputedStyle(viewport);
     var transformMatrix = new DOMMatrix(computedStyle.transform);
-    var OppositeTranslationX = -transformMatrix.m41*2;
-    var OppositeTranslationY = -transformMatrix.m42*2;
-    return [(OppositeTranslationX) +2880, (OppositeTranslationY) + 1380];
+    var OppositeTranslationX = -transformMatrix.m41;
+    var OppositeTranslationY = -transformMatrix.m42;
+    return [(OppositeTranslationX-20) , (OppositeTranslationY-200)];
 
   }
+  static getElementOffset()
+  {
+    const widthOutput = window.innerWidth;
+    const heightOutput = window.innerHeight;
+
+    return [(widthOutput/2),(heightOutput/2)];
+    
+  }
+  
   static setCanvasTranslation(translation)
   {
     const event = new CustomEvent('setTranslation', { detail: [translation[0],translation[1]] });

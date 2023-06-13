@@ -2,6 +2,7 @@ import './viewport.css'
 import Button from './button.jsx'
 import React ,{useEffect ,useState} from 'react';
 import Utilities from './Utilities';
+
 const  Viewport = (props) => {
     const [ViewportClass,setViewportClass] = useState("Viewport");
     const [ViewportTranslation,setViewportTranslation] = useState()
@@ -18,7 +19,12 @@ const  Viewport = (props) => {
     {
         if(thisClickState)
         {
-            const [x, y] = Utilities.getCanvasTranslation();
+            const wh = Utilities.getElementOffset();
+            var [x, y] = Utilities.getCanvasTranslation();
+            x = x - parseInt(props.x);
+            y = y - parseInt(props.y);
+            console.log(x)
+            console.log(y)
             return {transform: `translate(${x}px, ${y}px)`};
         }
         else
@@ -34,7 +40,7 @@ const  Viewport = (props) => {
             //Disable navbar on enlarge
             props.navCall.set_State(false);
             setViewportClass("Viewport_Enlarged");
-            Utilities.setCanvasTranslation([3000,3000]);
+            Utilities.setCanvasTranslation([ 3000, 3000 ]);
         }
         else
         {

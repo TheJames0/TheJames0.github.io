@@ -6,7 +6,7 @@ function Chat_Content() {
     const [messageBox,setmessageBox] = useState("");
     async function getUpdateStatus()
     {
-      let results = await fetch(`http://localhost:1234/chat/update_status`).then(response => response.text());
+      let results = await fetch(`https://thejames0.github.io/chat/update_status`).then(response => response.text());
       console.log(results)
       if(results == 'true')
       {
@@ -18,13 +18,13 @@ function Chat_Content() {
     }
     async function getData()
     {
-      let results = await fetch(`http://localhost:1234/chat`,{}).then(response => response.json())
+      let results = await fetch(`https://thejames0.github.io:1234/chat`,{}).then(response => response.json())
             .then(json => {return json});
             setContent(results)
     }
     async function sendData()
     {
-      const result = fetch('http://localhost:1234/chat/post', {
+      const result = fetch('https://thejames0.github.io/chat/post', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({name: nameBox, message: messageBox})
