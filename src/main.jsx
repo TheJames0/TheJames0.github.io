@@ -30,7 +30,7 @@ function navMenu_showState() {
 
 const title = <p className='title1'>James</p>
 const title2 = <p className='title2'>Mather</p>
-const viewport1 = <Viewport url="Project_1/Model_Configurator/index.html" x={"300"} y={"1620"} navCall={new navMenu_showState} />;
+const viewport1 = <Viewport url="Project_1/Model_Configurator/index.html" x={"100"} y={"1420"} navCall={new navMenu_showState} />;
 const project1_description = <p >This project is a vehicle customization tool intended for visualisation</p>
 const project1_description2 = <p >This project was written in Javascript and relies on the ThreeJS library</p>
 const child2 = <Branch key="1" text1="Description"  x="900" y="1120"  mainbody={project1_description}/>;
@@ -38,7 +38,8 @@ const child16 = <Branch key="16" text1="Implementation"  x="1200" y="1120"  main
 const child5 = <Branch key="2" text1="Project" text2="Viewport" x="100" y="1420" viewport={viewport1} />;
 const child1 = <Branch key="3" text1="Project" text2="Car-Configurator" x="600" y="820" child={[child2,child5,child16]} nav_manage={new navHandle}/>;
 
-const child4 = <Branch key="4" text1="Child of" text2="Test 2" x="-400" y="1020" />;
+const viewport2 = <Viewport url="Project_2/chat/index.html" x={"-400"} y={"1020"} navCall={new navMenu_showState} />;
+const child4 = <Branch key="4" text1="Child of" text2="Test 2" x="-400" y="1020" viewport={viewport2}/>;
 const child3 = <Branch key="5" text1="Test" text2="2" x="-200" y="620" child={child4} nav_manage={new navHandle}/>;
 
 
@@ -58,7 +59,7 @@ const backgroundinst = Background();
 
 ReactDOM.createRoot(document.getElementById('static')).render(
   <>
-    <Toolbar navelements={["Car_Configurator","Test2","Test3","Test4"]} handlers={[child1.props.nav_manage,child3.props.nav_manage,child6.props.nav_manage,child15.props.nav_manage]} navCall={viewport1.props.navCall}/>
+    <Toolbar navelements={["Car_Configurator","Test2","Test3","Test4"]} handlers={[child1.props.nav_manage,child3.props.nav_manage,child6.props.nav_manage,child15.props.nav_manage]} navCall={[viewport1.props.navCall,viewport2.props.navCall]}/>
   </>,
 )
 
