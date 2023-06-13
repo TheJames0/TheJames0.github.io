@@ -1,14 +1,13 @@
 {
   "name": "portfolio",
   "private": true,
-  "proxy": "http://localhost:1234",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"vite\" \"node Project_2/chat/src/server/index.cjs\"",
+    "dev": "vite",
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "concurrently \"vite preview\" \"node Project_2/chat/src/server/index.cjs\""
+    "preview": "vite preview"
   },
   "dependencies": {
     "arrow-line": "^0.7.5",
