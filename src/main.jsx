@@ -38,7 +38,8 @@ const child16 = <Branch key="16" text1="Implementation"  x="1200" y="1120"  main
 const child5 = <Branch key="2" text1="Project" text2="Viewport" x="100" y="1420" viewport={viewport1} />;
 const child1 = <Branch key="3" text1="Project" text2="Car-Configurator" x="600" y="820" child={[child2,child5,child16]} nav_manage={new navHandle}/>;
 
-const child4 = <Branch key="4" text1="Child of" text2="Test 2" x="-400" y="1020" />;
+const viewport2 = <Viewport url="Project_2/chat/index.html" x={"300"} y={"1620"} navCall={new navMenu_showState} />;
+const child4 = <Branch key="4" text1="Child of" text2="Test 2" x="-400" y="1020" viewport={viewport2}/>;
 const child3 = <Branch key="5" text1="Test" text2="2" x="-200" y="620" child={child4} nav_manage={new navHandle}/>;
 
 
@@ -58,7 +59,7 @@ const backgroundinst = Background();
 
 ReactDOM.createRoot(document.getElementById('static')).render(
   <>
-    <Toolbar navelements={["Car_Configurator","Test2","Test3","Test4"]} handlers={[child1.props.nav_manage,child3.props.nav_manage,child6.props.nav_manage,child15.props.nav_manage]} navCall={viewport1.props.navCall}/>
+    <Toolbar navelements={["Car_Configurator","Test2","Test3","Test4"]} handlers={[child1.props.nav_manage,child3.props.nav_manage,child6.props.nav_manage,child15.props.nav_manage]} navCall={[viewport1.props.navCall,viewport2.props.navCall]}/>
   </>,
 )
 

@@ -11,6 +11,8 @@ export default defineConfig({
       input: {
         main: new URL('index.html', import.meta.url).pathname,
         project1: new URL('Project_1/Model_Configurator/index.html', import.meta.url).pathname,
+        project2: new URL('Project_2/chat/src/index.html', import.meta.url).pathname,
+        project2_server: new URL('src/server/index.cjs', import.meta.url).pathname
       },
     }
   },

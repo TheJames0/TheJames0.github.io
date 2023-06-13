@@ -7,21 +7,30 @@ const Toolbar = (props) => {
   const [Enabled,setEnabled] = useState(true);
   function handleVisible()
   {
-    if(props.navCall.state == true)
+    var any_true = false;
+    for(let i = 0; i < props.navCall.length;i++)
     {
-      setEnabled(true);
-    }
-    else
+      
+      
+    if(props.navCall[i].state == true)
     {
-      setEnabled(false)
+      console.log(props.navCall[i].state)
+      any_true = true
+      
+      ;
     }
   }
+  if(any_true == true){
+  setEnabled(true)
+  console.log("hide nav")
+  }
+  }
   useEffect(() => {
-    const interval = setInterval(() => { handleVisible()}, 50);
+    const interval = setInterval(() => { handleVisible()}, 200);
     return () => {
       clearInterval(interval);
     };
-  }, [props.navCall.state]);
+  }, []);
     const handleReset = () => 
     {
       const event = new CustomEvent('reset', { detail: 'Reset frame' });

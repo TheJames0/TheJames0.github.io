@@ -1,8 +1,6 @@
 import './navigator.css'
 import Button from './button'
 const Navigator = (props) => {
-  if(props.nav_manage)
-  useEffect(() => {update()},[props.nav_manage.state]);
   
   const handleNavigatorSelect = (clickState,text) =>
   {
