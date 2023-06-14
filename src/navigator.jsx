@@ -1,15 +1,25 @@
 import './navigator.css'
 import Button from './button'
-const NavigatorButton = (props) =>
-{
-    
-    return <Button className="NavigatorButton" text={props.element}/>
-}
 const Navigator = (props) => {
+  
+  const handleNavigatorSelect = (clickState,text) =>
+  {
+    for(let i= 0; i < props.elements.length;i++)
+    {
+      if(props.elements[i] == text)
+      {
+        props.handlers[i].set_State(true);
+      }
+      else
+      {
+        props.handlers[i].set_State(false);
+      }
+    }
+  }
     return (
         <div id ="Navigator">
         {props.elements.map((item) => (
-        <NavigatorButton element = {item} />
+        <Button className="NavigatorButton" key = {item} text = {item} click={handleNavigatorSelect} />
       ))}
         </div>
     )

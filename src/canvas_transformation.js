@@ -1,8 +1,8 @@
 var viewport;
 var last_position_x = 0;
 var last_position_y = 0;
-var prevscale = 0.5;
-var scale = 0.5;
+var prevscale = 1;
+var scale = 1;
 var mouse_down;
 let translated = { x: 0, y: 0 };
 window.addEventListener("DOMContentLoaded", (event) => {
@@ -12,40 +12,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
     window.addEventListener('mousedown', mouseDragStart);
     window.addEventListener('mousemove', translateCanvas);
     window.addEventListener('mouseup', mouseDragEnd);
-    //Zoom function event listner
-    //window.addEventListener('wheel',scaleCanvas);
+
     window.addEventListener('reset', recenterCanvas);
-    console.log("website loaded");
+    //setTranslation event listener
+    window.addEventListener('setTranslation',setTranslationEvent)
 
 });
-function scaleCanvas(event)
-{
-    
-    //Scale Logic
-    scale -= event.deltaY/1000;
-
-    const minimum_scale = 0.3;
-    const maximum_scale = 2;
-
-    scale = Math.max(minimum_scale,Math.min(maximum_scale,scale));
-
-    
-    transformOrigin()
-    translate(0,0,scale,false);
-    console.log(scale);
-    prevscale = scale;
-}
-function transformOrigin(x,y)
-{
-    var centerscreenx = window.innerWidth/2;
-    var centerscreeny = window.innerHeight/2;
-    var translationlocalcenterx = translated.x - centerscreenx;
-    var translationlocalcentery = translated.y - centerscreeny;
-    console.log(translationlocalcenterx);
-    console.log(translationlocalcentery);
-
-    viewport.style.transformOrigin = `${translationlocalcenterx}px ${translationlocalcentery}px`;
-}
 function recenterCanvas()
 {
     scale = 0.5;
@@ -74,14 +46,15 @@ function translateCanvas(event)
 }
 function mouseDragStart(event) 
 {
-    console.log("started drag");
+    viewport.style.transition = '';
+
     mouse_down = true;
     last_position_x = event.clientX;
     last_position_y = event.clientY;
 }
 function mouseDragEnd(event)
 {
-    console.log("ended drag");
+    viewport.style.transition = 'all 0.25s';
     mouse_down = false;
 }
 
@@ -101,12 +74,16 @@ function translate( deltaX, deltaY,scale, reset)
     //Is reset true?
     if(reset)
     {
-        final_transform = 'translate(' + (window.innerWidth-1000) + 'px, ' + (window.innerHeight-600) + 'px) scale(0.5,0.5)';
-        console.log("canvas recentered");
+        final_transform = 'translate(' + (window.innerWidth-1000) + 'px, ' + (window.innerHeight-600) + 'px)';
     }
     else
     {
-        final_transform = 'translate(' + (translationX + deltaX) + 'px, ' + (translationY + deltaY) + 'px) scale('+scale+','+scale+')';
+        final_transform = 'translate(' + (translationX + deltaX) + 'px, ' + (translationY + deltaY) + 'px)';
     }
     viewport.style.transform = final_transform;
+}
+
+function setTranslationEvent(event)
+{
+    viewport.style.transform = 'translate(' + (event.detail[0]) + 'px, ' + (event.detail[1]) + 'px) ';
 }

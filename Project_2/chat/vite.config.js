@@ -4,15 +4,17 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  
-  build : {
+  build: {
+    // generate manifest.json in outDir
+    manifest: true,
     rollupOptions: {
-      
+      // overwrite default .html entry
       input: {
         main: new URL('index.html', import.meta.url).pathname,
-        project1: new URL('Project_1/Model_Configurator/index.html', import.meta.url).pathname,
-        project2: new URL('Project_2/chat/index.html', import.meta.url).pathname,
-      },
-    }
+        server: new URL('src/server/index.cjs', import.meta.url).pathname,
+      }
+      
+      
+    },
   },
 })

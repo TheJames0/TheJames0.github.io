@@ -1,15 +1,15 @@
 #Toolbar{
     user-select: none;
     -webkit-user-drag: none;
-    z-index: 999;
+    z-index: 700;
 
     position: fixed;
     top: 0%;
-    left: 94%;
-    width: 6%;
+    left: 92%;
+    width: 8%;
     height: 100%;
     background-color: rgba(134, 80, 33, 0.082);
-    z-index: 999;
+    z-index: 700;
 }
 
 #reset{

@@ -1,0 +1,41 @@
+GET http://localhost:1234/chat
+
+
+
+###
+
+
+
+
+POST http://localhost:1234/chat/post
+
+
+
+
+
+
+
+###
+
+
+
+
+
+
+GET https://chat-server-production-d84a.up.railway.app/update_status
+
+
+
+
+
+
+###
+
+
+
+
+
+
+
+
+GET https://chat-server-production-d84a.up.railway.app/chat

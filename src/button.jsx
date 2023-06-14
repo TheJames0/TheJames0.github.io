@@ -1,9 +1,9 @@
 import './button.css'
-import React,{ useCallback, useEffect, useState} from 'react';
+import React,{useState} from 'react';
 
 
 const  Button = (props) => {
-    const [Clicked,setClicked] = useState(false);
+    const [Clicked,setClicked] = useState(true);
 
     function handleEnter()
     {   
@@ -24,7 +24,7 @@ const  Button = (props) => {
     {
         if(props.click)
         {
-            setClicked(props.click(Clicked));
+            setClicked(props.click(Clicked,props.text));
         }
         
     }
