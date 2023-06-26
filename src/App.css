@@ -5,12 +5,8 @@
   width: 0px;
   height: 0px;
   text-align: center;
-  overflow: none;
-  transform: translate(900px,300px);
-  transform-origin: 0 0;
-  -webkit-transform-origin: 0 0;
+  transform: translate(0,0);
   z-index: -400;
-
 }
 #background
 {
@@ -33,4 +29,8 @@ body{
   overflow: hidden;
   user-select: none;
   
+}
+#Canvas-Container{
+  width: 4000px;
+  height: 4000px;
 }

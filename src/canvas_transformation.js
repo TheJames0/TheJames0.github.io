@@ -7,17 +7,33 @@ var mouse_down;
 let translated = { x: 0, y: 0 };
 window.addEventListener("DOMContentLoaded", (event) => {
     viewport = document.getElementById('transformable');
+    translate(window.innerWidth/2.5,window.innerHeight/4)
     //Add mouse event listeners
+    window.addEventListener('wheel',handleScroll);
     mouse_down = false;
     window.addEventListener('mousedown', mouseDragStart);
     window.addEventListener('mousemove', translateCanvas);
     window.addEventListener('mouseup', mouseDragEnd);
-
+    //Scroll wheel listeners
     window.addEventListener('reset', recenterCanvas);
     //setTranslation event listener
     window.addEventListener('setTranslation',setTranslationEvent)
 
 });
+
+function handleScroll(event) {
+    
+    if(event.deltaY > 0)
+    {
+        scale += 0.1;
+    }
+    else
+    {
+        scale -= 0.1;
+    }
+    translate()
+} 
+
 function recenterCanvas()
 {
     scale = 0.5;
@@ -74,7 +90,7 @@ function translate( deltaX, deltaY,scale, reset)
     //Is reset true?
     if(reset)
     {
-        final_transform = 'translate(' + (window.innerWidth-1000) + 'px, ' + (window.innerHeight-600) + 'px)';
+        final_transform = 'translate(' + (window.innerWidth-1000) + 'px, ' + (window.innerHeight-600) + 'px) + scale('+scale+','+scale+')';
     }
     else
     {

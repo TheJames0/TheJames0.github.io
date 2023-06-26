@@ -1,18 +1,15 @@
 import React, { useState, useEffect, useRef} from "react";
 import './branch.css';
+import Xarrow, { useXarrow } from "react-xarrows";
 import Utilities from "./Utilities";
-import Xarrow,{useXarrow} from "react-xarrows";
-import { v4 as uuid } from 'uuid';
-
-
 const  Branch = (props) => {
   const [showHover, setShowHover] = useState(false);
   const [branchOpen, setbranchOpen] = useState(false);
   const [isPositionStart, setisPositionStart] = useState(false);
   const [isChildUnload, setisChildUnload] = useState(true)
   const [EmbeddedButtonHover, setEmbeddedButtonHover] = useState(false);
-  const unique_id = uuid();
-  const updateXarrow = useXarrow();
+  const ref = React.createRef();
+  useEffect(() => {props.myRef.set_State(ref)},[]);
   if(props.nav_manage)
   useEffect(() => {update()},[props.nav_manage.state]);
   const update = () =>
@@ -25,16 +22,10 @@ const  Branch = (props) => {
     else
     {
       openBranch();
-      Utilities.setCanvasTranslation([-props.x + 750,-props.y + 300]);
+      const wh = Utilities.getElementOffset();
+      Utilities.setCanvasTranslation([-props.x + wh[0]/1.3,-props.y + wh[1]/1.9]);
     }
   }
-  //On Component Mount
-  useEffect(() => {
-    const interval = setInterval(() => updateXarrow(), 1);
-    return () => {  
-      clearInterval(interval);
-    };
-  },[]);
   useEffect(() => {
     if(EmbeddedButtonHover)
     {
@@ -122,10 +113,8 @@ const  Branch = (props) => {
       const child_parent_y = props.y;
       const child_parent_y_prop = {parenty:child_parent_y};
       
-      const parentref = unique_id;
-      const parentprop = {refToParent:parentref}
 
-      const prop1 = Utilities.propAdd(props.child[i],[additionalState, keyprop, parentprop, child_parent_x_prop, child_parent_y_prop]);
+      const prop1 = Utilities.propAdd(props.child[i],[additionalState, keyprop, child_parent_x_prop, child_parent_y_prop]);
       newchild.push(prop1);
     }
   }
@@ -140,10 +129,8 @@ const  Branch = (props) => {
     const child_parent_y = props.y;
     const child_parent_y_prop = {parenty:child_parent_y};
 
-    const parentref = unique_id;
-    const parentprop = {refToParent:parentref}
 
-    const test = Utilities.propAdd(props.child,[additionalState,keyprop,parentprop,child_parent_x_prop,child_parent_y_prop]);
+    const test = Utilities.propAdd(props.child,[additionalState,keyprop,child_parent_x_prop,child_parent_y_prop]);
     newchild.push(test);
   }
     return newchild;
@@ -153,30 +140,6 @@ const  Branch = (props) => {
 
   return (
     <>
-    {props.refToParent 
-    ? branchOpen 
-    ? <Xarrow className="arrow" 
-                start={props.refToParent} //can be react ref
-                end={unique_id} //or an id
-                startAnchor={"auto"}
-                endAnchor={"top"}
-                color="orangered"
-                dashness={{strokeLen: 20, nonStrokeLen: 8, animation:3  }}
-                showHead={false }  /> 
-                :
-                <Xarrow className="arrow"
-                start={props.refToParent} //can be react ref
-                end={unique_id} //or an id
-                startAnchor={"auto"}
-                endAnchor={"top"}
-                color="orangered"
-                dashness={{strokeLen: 15, nonStrokeLen: 20, animation:0}}
-                showHead={false }  />
-              : 
-              <></>
-              }
-            
-      
       <div  style= 
       {
         isPositionStart ?
@@ -214,6 +177,7 @@ const  Branch = (props) => {
           setShowHover(false);
           
         }}
+        onLoad={props.myRef.set_State(ref)}
         onClick={() => {
           if(branchOpen)
           {
@@ -226,9 +190,9 @@ const  Branch = (props) => {
           }
           
           
-        }}>
+        }} ref={ref}>
       
-      <div id={unique_id} className={branchOpen && props.child ? "Clicked" : (showHover && props.child ? "Hovered" : "Branch")}>
+      <div id={props.id} className={branchOpen && props.child ? "Clicked" : (showHover && props.child ? "Hovered" : "Branch")}>
       
       <h1>{props.text1}</h1>
       <h2>{props.text2}</h2>

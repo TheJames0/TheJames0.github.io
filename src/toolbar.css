@@ -16,3 +16,6 @@
     position: relative;
     offset: center;
 }
+p{
+    font-size: 1vw;
+}
