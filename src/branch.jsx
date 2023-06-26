@@ -22,8 +22,6 @@ const  Branch = (props) => {
     else
     {
       openBranch();
-      const wh = Utilities.getElementOffset();
-      Utilities.setCanvasTranslation([-props.x + wh[0]/1.3,-props.y + wh[1]/1.9]);
     }
   }
   useEffect(() => {
@@ -204,6 +202,7 @@ const  Branch = (props) => {
       </div>
       {branchOpen && handleChildren() }
     </>
+    
   );
 }
 

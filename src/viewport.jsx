@@ -14,24 +14,6 @@ const  Viewport = (props) => {
         };
       }, [thisClickState]);
     
-    
-    const TranslationProperty = () =>
-    {
-        if(thisClickState)
-        {
-            const wh = Utilities.getElementOffset();
-            var [x, y] = Utilities.getCanvasTranslation();
-            x = x - parseInt(props.x);
-            y = y - parseInt(props.y);
-            console.log(x)
-            console.log(y)
-            return {transform: `translate(${x}px, ${y}px)`};
-        }
-        else
-        {
-            return {transform: `translate(${0}px, ${0}px)`};
-        }
-    }
     const viewport_enlarge_Click = (clickState) =>
     {
         setthisClickState(clickState);
@@ -40,14 +22,12 @@ const  Viewport = (props) => {
             //Disable navbar on enlarge
             props.navCall.set_State(false);
             setViewportClass("Viewport_Enlarged");
-            Utilities.setCanvasTranslation([ 3000, 3000 ]);
         }
         else
         {
             //Enable navbar on enlarge
             props.navCall.set_State(true);
             setViewportClass("Viewport");
-            Utilities.setCanvasTranslation([-props.x + 300,-props.y + 300]);
         }
         return !clickState
     }

@@ -18,21 +18,5 @@ class Utilities
     return [(OppositeTranslationX-20) , (OppositeTranslationY-200)];
 
   }
-  static getElementOffset()
-  {
-    const widthOutput = window.innerWidth;
-    const heightOutput = window.innerHeight;
-
-    return [(widthOutput/2),(heightOutput/2)];
-    
-  }
-  
-  static setCanvasTranslation(translation)
-  {
-    const event = new CustomEvent('setTranslation', { detail: [translation[0],translation[1]] });
-    window.dispatchEvent(event);
-    
-
-  }
 }
 export default Utilities;

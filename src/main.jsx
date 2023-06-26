@@ -55,7 +55,6 @@ const child4 = <Branch key="4" text1="Child of" text2="Test 2" x="-400" y="1020"
 const child3 = <Branch key="5" text1="Project 2" text2="Messaging App" x="-200" y="620" child={child4} nav_manage={new navHandle} myRef={new Branch_Ref}/>;
 
 
-
 const child7 = <Branch key="6" text1="Child of" text2="Test 3" x="-2000" y="700" myRef={new Branch_Ref}/>;
 const child8 = <Branch key="7" text1="Child of" text2="Test 3" x="-1600" y="200" myRef={new Branch_Ref}/>;
 const child9 = <Branch key="8" text1="Child of" text2="Test 3" x="-1200" y="-300" myRef={new Branch_Ref}/>;
