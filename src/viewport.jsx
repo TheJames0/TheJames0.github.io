@@ -4,12 +4,11 @@ import React ,{useEffect ,useState} from 'react';
 import Utilities from './Utilities';
 function zoomout()
 {
-        const viewport = document.querySelector('meta[name="viewport"]');
-        console.log("reset")
-        if ( viewport ) {
-          viewport.content = 'initial-scale=1';
-          viewport.content = 'width=device-width';
-        }
+        
+    const viewportmeta = document.querySelector('meta[name=viewport]');
+    viewportmeta.setAttribute('content', "initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0");
+    console.log("reset")
+        
 }
 const  Viewport = (props) => {
     const [ViewportClass,setViewportClass] = useState("Viewport");
