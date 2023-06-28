@@ -12,13 +12,14 @@ function Arrow_Dictionary() {
   }
 }
 const Application = <App arrow_dict={new Arrow_Dictionary}/>
+ReactDOM.createRoot(document.getElementById('arrows')).render(
+  <>
+      <Arrows arrow_dict = {Application.props.arrow_dict}/>
+  </>,
 ReactDOM.createRoot(document.getElementById('static')).render(
   <>
       {Application}
   </>,
 )
-ReactDOM.createRoot(document.getElementById('arrows')).render(
-  <>
-      <Arrows arrow_dict = {Application.props.arrow_dict}/>
-  </>,
+
 )

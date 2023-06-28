@@ -3,7 +3,7 @@ import Chat_Content from '../../chat/src/chat_content';
 function App() {
   return (
     <>
-    <h1 style={{backgroundColor:'lightblue',top:'0px',left:'0px'} }> Messaging Server</h1>
+    <div style={{height:'20%',backgroundColor:'lightblue',fontFamily:'monospace',fontSize:'30px'}}> Messaging Server</div>
     <Chat_Content />
     </>
   );

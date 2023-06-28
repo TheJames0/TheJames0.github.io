@@ -63,8 +63,8 @@ function Chat_Content() {
         </div>
       ))}
     </div>
-    <div style={{top:'93%',position:'fixed',display:'flex',backgroundColor:"lightblue"}}>
-      <p>Name</p>
+    <div style={{bottom:'5%',height:'7%',width:'100%',position:'absolute',display:'flex',backgroundColor:"lightblue"}}>
+      <p style={{top:'40%'}}>Name</p>
       <input type="text" value={nameBox} onChange={e => setnameBox(e.target.value)}   />
       <p>Message</p>
       <input type="text" value={messageBox} onChange={e => setmessageBox(e.target.value)} />

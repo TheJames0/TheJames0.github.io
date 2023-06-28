@@ -13,7 +13,7 @@ const Toolbar = (props) => {
     {
       if(props.navCall[i].state == false)
       {
-        props.utility.zoomToElement(props.navCall[i].ref,1.5);
+        props.utility.zoomToElement(props.navCall[i].ref,1.45,150,'easeOut');
         all_true = false;
       }
     }
@@ -39,7 +39,7 @@ const Toolbar = (props) => {
         <div id ="Toolbar">
         <Button click={() => props.utility.resetTransform()} className="toolbar-button" text = "" icon={image1} iconclassName="toolbar-button-image"/>
         
-        <Navigator elements={props.navelements} handlers={props.handlers} utility = {props.utility}/>
+        <Navigator elements={props.navelements} start_state_handler={props.start_state_handler} state_handlers = {props.state_handlers} handlers={props.handlers} utility = {props.utility}/>
         </div>
         
         :

@@ -11,10 +11,10 @@ const  Branch = (props) => {
   const ref = React.createRef();
   useEffect(() => {props.myRef.set_State(ref)});
   if(props.nav_manage)
-  useEffect(() => {update()},[props.nav_manage.state]);
+  useEffect(() => {props.nav_manage.set_branch_callback(update);props.nav_manage.set_State(false)},[props.nav_manage.state]);
+  
   const update = () =>
   {
-    if(props.nav_manage)
     if(props.nav_manage.state == false)
     {
       closeBranch();
@@ -145,7 +145,7 @@ const  Branch = (props) => {
 
         width: 'fit-content',
         height: 'fit-content',
-        position:'fixed',
+        position:'absolute',
         left:`${props.x}px`,
         top:`${props.y}px`,
         transition: 'all 0.5s',
@@ -158,7 +158,7 @@ const  Branch = (props) => {
 
         width: 'fit-content',
         height: 'fit-content',
-        position:'fixed',
+        position:'absolute',
         left:`${props.parentx}px`,
         top:`${props.parenty}px`,
         transition: 'all 0.5s',
@@ -194,7 +194,7 @@ const  Branch = (props) => {
       <h1>{props.text1}</h1>
       <h2>{props.text2}</h2>
       {props.viewport && handleEmbeddedButton()}
-       <>{props.mainbody}</>
+       {props.mainbody ? <div className="textcontainer">{props.mainbody}</div> : <></>}
        
        <p>{props.child ? '< >':''}</p>
       </div>
