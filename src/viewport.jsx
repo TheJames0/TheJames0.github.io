@@ -2,7 +2,15 @@ import './viewport.css'
 import Button from './button.jsx'
 import React ,{useEffect ,useState} from 'react';
 import Utilities from './Utilities';
-
+function zoomout()
+{
+        const viewport = document.querySelector('meta[name="viewport"]');
+        console.log("reset")
+        if ( viewport ) {
+          viewport.content = 'initial-scale=1';
+          viewport.content = 'width=device-width';
+        }
+}
 const  Viewport = (props) => {
     const [ViewportClass,setViewportClass] = useState("Viewport");
     const [ViewportTranslation,setViewportTranslation] = useState()
@@ -16,12 +24,14 @@ const  Viewport = (props) => {
         {
             //Disable navbar on enlarge
             props.navCall.set_State(false);
+            zoomout()
             setViewportClass("Viewport_Enlarged");
         }
         else
         {
             //Enable navbar on unenlarge
             props.navCall.set_State(true);
+            zoomout()
             props.navCall.utilitycallback()
             setViewportClass("Viewport");
         }
