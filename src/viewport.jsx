@@ -20,8 +20,9 @@ const  Viewport = (props) => {
         }
         else
         {
-            //Enable navbar on enlarge
+            //Enable navbar on unenlarge
             props.navCall.set_State(true);
+            props.navCall.utilitycallback()
             setViewportClass("Viewport");
         }
         return !clickState

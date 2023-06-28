@@ -48,7 +48,7 @@ function Chat_Content() {
     useEffect(() => {if(reqUpdate ==true){getData();setreqUpdate(false);}}, [reqUpdate]);
     useEffect(() => {const interval = setInterval(() => {
       getUpdateStatus();
-    }, 250);},[]);
+    }, 500);},[]);
     useEffect(() => {const interval = setInterval(() => {
       getData();
     }, 10000);},[]);

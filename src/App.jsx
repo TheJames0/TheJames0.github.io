@@ -32,6 +32,7 @@ function navHandle() {
 function navMenu_showState() {
   this.state = true;
   this.ref = true;
+  this.utilitycallback = null;
   this.set_State = function(new_state) 
   {
   this.state = new_state;
@@ -39,6 +40,10 @@ function navMenu_showState() {
   this.set_Ref = function(new_ref) 
   {
   this.ref = new_ref;
+  }
+  this.set_utility_callback = function(new_callback) 
+  {
+  this.utilitycallback = new_callback;
   }
 }
 function Branch_Ref() {

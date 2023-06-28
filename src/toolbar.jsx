@@ -6,6 +6,10 @@ import React,{useState,useEffect} from 'react';
 import {TransformWrapper,TransformComponent,} from "react-zoom-pan-pinch";
 const Toolbar = (props) => {
   const [Enabled,setEnabled] = useState(true);
+  useEffect(()=>{for(let i = 0; i < props.navCall.length;i++)
+  {
+    props.navCall[i].set_utility_callback(props.utility.resetTransform)
+  }},[])
   function handleVisible()
   {
     let all_true = true;
