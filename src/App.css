@@ -33,5 +33,5 @@ body{
   background-color: #180f0c;
   overflow: hidden;
   user-select: none;
-  
+  touch-action: pan-x pan-y;
 }
