@@ -1,11 +1,8 @@
 .Viewport_Enlarged
 {
-    transform:translate(-4000px,-4000px);
     position:relative;
-    width: 100vw;
-    height: 100vh;
-    top: -9000;
-    left: -9000;
+    width: 65vw;
+    height: 63.2vh;
     z-index: 900;
     transition: width 0.5s;
     transition: height 0.5s;
@@ -13,8 +10,8 @@
 .Viewport
 {
     position:relative;
-    width: 60vw;
-    height: 60vh;
+    width: 40vw;
+    height: 40vh;
     left: 0;
     top: 0;
     z-index: 900;

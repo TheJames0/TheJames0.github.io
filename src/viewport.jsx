@@ -7,13 +7,8 @@ const  Viewport = (props) => {
     const [ViewportClass,setViewportClass] = useState("Viewport");
     const [ViewportTranslation,setViewportTranslation] = useState()
     const [thisClickState,setthisClickState] = useState(false)
-    useEffect(() => {
-        const interval = setInterval(() => setViewportTranslation(TranslationProperty), 0.1);
-        return () => {
-          clearInterval(interval);
-        };
-      }, [thisClickState]);
     
+    useEffect(()=>{props.navCall.set_Ref(props.id)})
     const viewport_enlarge_Click = (clickState) =>
     {
         setthisClickState(clickState);
@@ -32,9 +27,10 @@ const  Viewport = (props) => {
         return !clickState
     }
 return(
-    <div  style={ViewportTranslation}>
+    <div   style={{position:'relative'}}>
     <Button className={"viewport_enlarge_button"} text="Enlarge" embed_hover={props.embed_hover} click={viewport_enlarge_Click}/>
     <iframe className = {ViewportClass} src={props.url + '?wmode=transparent'} allowtransparency="true"/>
+    <div id={props.id} style={{left:'0px',top:'0px',position:'absolute'}}></div>
     </div>
 );
 }

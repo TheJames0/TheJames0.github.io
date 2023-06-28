@@ -2,20 +2,19 @@
     user-select: none;
     -webkit-user-drag: none;
     z-index: 700;
-
-    position: fixed;
+    position: absolute;
     top: 0%;
-    left: 92%;
-    width: 8%;
+    right: 0%;
+    
+    width: 20%;
     height: 100%;
-    background-color: rgba(134, 80, 33, 0.082);
     z-index: 700;
-}
+    max-width: 200px;
 
-#reset{
-    position: relative;
-    offset: center;
-}
-p{
-    font-size: 1vw;
+    user-drag: none; 
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }

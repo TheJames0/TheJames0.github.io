@@ -30,7 +30,7 @@ const  Button = (props) => {
     }
 return(
     <button className={props.className} onClick={mouseClick} onMouseEnter={handleEnter } onMouseLeave={handleExit}>
-    {props.text}
+    <div className='button-text'>{props.text}</div>
     <Button_Image icon = {props.icon} className={props.iconclassName} />
     
 

@@ -7,15 +7,18 @@ const Arrows =(props) => {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [props.arrow_dict]);
   function arrow_return()
   {
     var final = [];
-    
-    for(let i = 0;i < props.dict.length; i++)
+    if(props.arrow_dict)
     {
-    let key = props.dict[i].key.ref;
-    let value = props.dict[i].value.ref;
+    const dict = props.arrow_dict.dict;
+    
+    for(let i = 0;i < dict.length; i++)
+    {
+    let key = dict[i].key.ref;
+    let value = dict[i].value.ref;
     if(key.current != null && value.current != null)
     final.push(
     <Xarrow key={i}
@@ -28,14 +31,13 @@ const Arrows =(props) => {
     showHead={false } />
     )
   }
-  console.log(props.dict[0].key.ref)
+  }
   return final;
 }
 
 
 
     return (<>
-    
     {arrow_return()}
     </>)
     }

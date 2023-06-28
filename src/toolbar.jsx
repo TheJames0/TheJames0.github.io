@@ -3,6 +3,7 @@ import Navigator from './navigator.jsx';
 import image1 from '/src/assets/reset.png';
 import Button from './button';
 import React,{useState,useEffect} from 'react';
+import {TransformWrapper,TransformComponent,} from "react-zoom-pan-pinch";
 const Toolbar = (props) => {
   const [Enabled,setEnabled] = useState(true);
   function handleVisible()
@@ -10,9 +11,9 @@ const Toolbar = (props) => {
     let all_true = true;
     for(let i = 0; i < props.navCall.length;i++)
     {
-      console.log(props.navCall[i].state);
       if(props.navCall[i].state == false)
       {
+        props.utility.zoomToElement(props.navCall[i].ref,1.5);
         all_true = false;
       }
     }
@@ -27,23 +28,18 @@ const Toolbar = (props) => {
   }
   
   useEffect(() => {
-    const interval = setInterval(() => { handleVisible()}, 200);
+    const interval = setInterval(() => { handleVisible()}, 100);
     return () => {
       clearInterval(interval);
     };
   }, []);
-    const handleReset = () => 
-    {
-      const event = new CustomEvent('reset', { detail: 'Reset frame' });
-      window.dispatchEvent(event);
-    };
     return (
       <>
         {Enabled ?
         <div id ="Toolbar">
-        <Button click={handleReset} className="toolbar-button" text = "" icon={image1} iconclassName="toolbar-button-image"/>
+        <Button click={() => props.utility.resetTransform()} className="toolbar-button" text = "" icon={image1} iconclassName="toolbar-button-image"/>
         
-        <Navigator elements={props.navelements} handlers={props.handlers}/>
+        <Navigator elements={props.navelements} handlers={props.handlers} utility = {props.utility}/>
         </div>
         
         :

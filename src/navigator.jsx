@@ -1,18 +1,19 @@
 import './navigator.css'
 import Button from './button'
+import React, {useState} from 'react';
+import useWindowDimensions from './dimension';
 const Navigator = (props) => {
   
+  const { height, width } = useWindowDimensions();
   const handleNavigatorSelect = (clickState,text) =>
   {
     for(let i= 0; i < props.elements.length;i++)
     {
       if(props.elements[i] == text)
       {
-        props.handlers[i].set_State(true);
-      }
-      else
-      {
-        props.handlers[i].set_State(false);
+        console.log(parseFloat(width));
+        console.log(parseFloat(height));
+        props.utility.setTransform((20000 + parseFloat(width/2.3)) - parseInt(props.handlers[i].x),(20000 + parseFloat(height/2.5)) - parseInt(props.handlers[i].y)  ,1)
       }
     }
   }

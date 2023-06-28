@@ -9,7 +9,7 @@ const  Branch = (props) => {
   const [isChildUnload, setisChildUnload] = useState(true)
   const [EmbeddedButtonHover, setEmbeddedButtonHover] = useState(false);
   const ref = React.createRef();
-  useEffect(() => {props.myRef.set_State(ref)},[]);
+  useEffect(() => {props.myRef.set_State(ref)});
   if(props.nav_manage)
   useEffect(() => {update()},[props.nav_manage.state]);
   const update = () =>
@@ -138,14 +138,14 @@ const  Branch = (props) => {
 
   return (
     <>
-      <div  style= 
+      <div  id={props.id} style= 
       {
         isPositionStart ?
       {
-        display:'inline-block',
+
         width: 'fit-content',
         height: 'fit-content',
-        position:'absolute',
+        position:'fixed',
         left:`${props.x}px`,
         top:`${props.y}px`,
         transition: 'all 0.5s',
@@ -155,10 +155,10 @@ const  Branch = (props) => {
         }
         :
         {
-        display:'inline-block',
+
         width: 'fit-content',
         height: 'fit-content',
-        position:'absolute',
+        position:'fixed',
         left:`${props.parentx}px`,
         top:`${props.parenty}px`,
         transition: 'all 0.5s',
@@ -175,7 +175,6 @@ const  Branch = (props) => {
           setShowHover(false);
           
         }}
-        onLoad={props.myRef.set_State(ref)}
         onClick={() => {
           if(branchOpen)
           {
@@ -190,7 +189,7 @@ const  Branch = (props) => {
           
         }} ref={ref}>
       
-      <div id={props.id} className={branchOpen && props.child ? "Clicked" : (showHover && props.child ? "Hovered" : "Branch")}>
+      <div className={branchOpen && props.child ? "Clicked" : (showHover && props.child ? "Hovered" : "Branch")}>
       
       <h1>{props.text1}</h1>
       <h2>{props.text2}</h2>
