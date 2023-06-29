@@ -1,26 +1,42 @@
 import React,{useEffect,useState} from "react";
 import { Color } from "three";
+import './chat.css'
+import Input_field from "./input_field";
 function Chat_Content() {
     const [content, setContent] = useState([]);
     const [reqUpdate,setreqUpdate] = useState(false);
     const [nameBox,setnameBox] = useState("");
     const [messageBox,setmessageBox] = useState("");
+    function setName(name)
+    {
+      setnameBox(name)
+    }
+    function setMessage(text)
+    {
+      setmessageBox(text)
+    }
+    function updateTime() {
+      const dt = new Date().toLocaleString().replace(",","").replace(/:.. /," ");
+      return dt
+    }
     const stringToColour = (str,bordering) =>  {
       var hash = 0;
       for (var i = 0; i < str.length; i++) {
           hash = str.charCodeAt(i) + ((hash << 5) - hash);
       }
       var colour = '#';
+      var colour2 = '#';
       for (var i = 0; i < 3; i++) {
           var value = (hash >> (i * 8)) & 0xFF;
           colour += ('00' + value.toString(16)).substr(-2);
+          colour2 += ('00' + value.toString(8)).substr(-1);
       }
-      return ({backgroundColor:colour,padding:'10px',border: '5px solid rgba(0, 0, 0, 0.1)',overflowX:'wrap'});
+      
+      return ({background: `linear-gradient(150deg,  ${colour} 0%,${colour2} 100%)`,padding:'10px',overflowX:'wrap'});
   }
     async function getUpdateStatus()
     {
       let results = await fetch(`https://chat-server-production-d84a.up.railway.app/chat/update_status`).then(response => response.text());
-      console.log(results)
       if(results == 'true')
       {
       setreqUpdate(true)
@@ -37,10 +53,11 @@ function Chat_Content() {
     }
     async function sendData()
     {
+      
       const result = fetch('https://chat-server-production-d84a.up.railway.app/chat/post', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({name: nameBox, message: messageBox})
+        body: JSON.stringify({name: nameBox, message: messageBox, time: updateTime()})
     });
 
     }
@@ -55,20 +72,19 @@ function Chat_Content() {
     return (
       <>
       
-      <div style={{position:'absolute',top:'10%',height:'50 %',width:'100%',maxHeight:'80%',maxWidth:'100%',overflowY:'scroll'}}>
+      <div className="chat_content">
       {content.map((mess) => (
-        <div key={mess.id} style={stringToColour(mess.name)}>
-          <span>{ mess.name + ' :   ' }</span>
+        <div key={mess.id} className="message" style={stringToColour(mess.name)}>
+          <span>{ mess.time + ' :   ' }</span>
+          <p>{ mess.name + ' :   ' }</p>
           <p style={{whiteSpace: 'pre-wrap',overflowWrap: 'break-word'}}>{mess.message + ' ' }</p>
         </div>
       ))}
     </div>
-    <div style={{bottom:'5%',height:'7%',width:'100%',position:'absolute',display:'flex',backgroundColor:"lightblue"}}>
-      <p style={{top:'40%'}}>Name</p>
-      <input type="text" value={nameBox} onChange={e => setnameBox(e.target.value)}   />
-      <p>Message</p>
-      <input type="text" value={messageBox} onChange={e => setmessageBox(e.target.value)} />
-      <button onClick={()=>{sendData()}}>Submit</button>
+    <div className={"input_div"}>
+      <Input_field className={"input_field"} type="text" default={"Enter a name"} onChange={setName}  />
+      <Input_field className={"input_field"} type="text" default={"Enter your message"} onChange={setMessage} />
+      <button className={"button"} onClick={()=>{sendData()}}>Submit</button>
       </div>
     </>
     );

@@ -17,10 +17,7 @@ const Navigator = (props) => {
       {
         
         props.state_handlers[i].set_State(true)
-        console.log(parseFloat(width));
-        console.log(parseFloat(height));
         props.utility.setTransform((20000 + parseFloat(width/2.3)) - parseInt(props.handlers[i].x),(20000 + parseFloat(height/2.5)) - parseInt(props.handlers[i].y)  ,1)
-        console.log(props.state_handlers[i])
         
         for(let x= 0; x < props.elements.length;x++)
         {

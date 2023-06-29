@@ -3,11 +3,16 @@
   width: 100%;
   height: 100%;
 }
-.button {
-  border-top: 20px;
-  padding-top: 20px;
+button {
+  width:100%;
+  height: 100%;
 }
 button {
+  border-radius: 4px;
   z-index: 265
   }
+.containing
+{
+  width: 10%;
+}
 /*# sourceMappingURL=style.css.map */

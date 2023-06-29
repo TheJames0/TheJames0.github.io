@@ -157,7 +157,6 @@ const startnode = <Branch key="0" text1={title} text2={title2} x="0" y="20" chil
 
 useEffect(() => {props.arrow_dict.set_dict(generate_Arrows())},[])
 const positions = generate_Positions();
-console.log(positions)
 return(
   <React.Fragment>
   
