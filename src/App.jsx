@@ -150,7 +150,9 @@ const child6 = <Branch id = "3" key="10" text1="Test" text2="3" x="-500" y="200"
 const child11 = <Branch key="11" text1="Child of" text2="Test 4" x="1800" y="-400" myRef={new Branch_Ref}/>;
 const child12 = <Branch key="12" text1="Child of" text2="Test 4" x="1800" y="200" myRef={new Branch_Ref}/>;
 const child13 = <Branch key="13" text1="Child of" text2="Test 4" x="1800" y="600" myRef={new Branch_Ref}/>;
-const child14 = <Branch key="14" text1="Child of" text2="Test 4" x="1800" y="1400" myRef={new Branch_Ref}/>;
+
+const viewport3 = <Viewport id={"view2"} url="https://thejames0.github.io" x={"-400"} y={"1020"} navCall={new navMenu_showState} />;
+const child14 = <Branch key="14" text1="Child of" text2="Test 4" x="1800" y="1400" viewport={viewport3} myRef={new Branch_Ref}/>;
 const child15 = <Branch id = "4" key="15" text1="Test" text2="4" x="1400" y="600" child={[child11,child12,child13,child14]} nav_manage={new navHandle} myRef={new Branch_Ref}/>;
 const backgroundinst = Background();
 const startnode = <Branch key="0" text1={title} text2={title2} x="0" y="20" child={[child1,child3,child6,child15]} nav_manage={new navHandle} parent_unloading="false" myRef={new Branch_Ref}/>;
@@ -164,7 +166,7 @@ return(
   initialPositionY={19850+parseFloat(height/2.0 )}  initialScale={0.5} minScale={0.2} maxScale={4} limitToBounds={false} panning={{disabled:false,velocityDisabled:true}} velocityAnimation={{disabled:false,animationTime:100,equalToMove:false}}>
   {(utils) => (
     <>
-  <Toolbar navelements={["Car_Configurator","Test2","Test3","Test4"]} state_handlers={[child1.props.nav_manage,child3.props.nav_manage,child6.props.nav_manage,child15.props.nav_manage]} start_state_handler={startnode.props.nav_manage} handlers={positions} navCall={[viewport1.props.navCall,viewport2.props.navCall]}  utility={utils}/>
+  <Toolbar navelements={["Car_Configurator","Test2","Test3","Test4"]} state_handlers={[child1.props.nav_manage,child3.props.nav_manage,child6.props.nav_manage,child15.props.nav_manage]} start_state_handler={startnode.props.nav_manage} handlers={positions} navCall={[viewport1.props.navCall,viewport2.props.navCall,viewport3.props.navCall]}  utility={utils}/>
   
 
   <TransformComponent wrapperClass='viewport' >

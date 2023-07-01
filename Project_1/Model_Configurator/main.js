@@ -294,19 +294,6 @@ function setMaterials()
       }
     }});
 }
-//Dynamic display stretching
-window.addEventListener('resize', function()
-
-{
-  onWindowResize();
-});
-function onWindowResize() {
-
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-
-  renderer.setSize( window.innerWidth, window.innerHeight );
-}
 
 function animate() {
   requestAnimationFrame( animate );

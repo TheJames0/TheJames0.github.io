@@ -2,7 +2,11 @@ import React,{useEffect,useState} from "react";
 import { Color } from "three";
 import './chat.css'
 import Input_field from "./input_field";
-function Chat_Content() {
+import stringToColour from './stringtocolour'
+function Chat_Content(props) {
+    const room = props.room
+    const params = new URLSearchParams({collection: room});
+
     const [content, setContent] = useState([]);
     const [reqUpdate,setreqUpdate] = useState(false);
     const [nameBox,setnameBox] = useState("");
@@ -15,29 +19,15 @@ function Chat_Content() {
     {
       setmessageBox(text)
     }
-    function updateTime() {
+    function getTime() {
       const dt = new Date().toLocaleString().replace(",","").replace(/:.. /," ");
       return dt
     }
-    const stringToColour = (str,bordering) =>  {
-      var hash = 0;
-      for (var i = 0; i < str.length; i++) {
-          hash = str.charCodeAt(i) + ((hash << 5) - hash);
-      }
-      var colour = '#';
-      var colour2 = '#';
-      for (var i = 0; i < 3; i++) {
-          var value = (hash >> (i * 8)) & 0xFF;
-          colour += ('00' + value.toString(16)).substr(-2);
-          colour2 += ('00' + value.toString(8)).substr(-1);
-      }
-      
-      return ({background: `linear-gradient(150deg,  ${colour} 0%,${colour2} 100%)`,padding:'10px',overflowX:'wrap'});
-  }
+    
     async function getUpdateStatus()
     {
       let results = await fetch(`https://chat-server-production-d84a.up.railway.app/chat/update_status`).then(response => response.text());
-      if(results == 'true')
+      if(results.update == 'true' && results.collection == room)
       {
       setreqUpdate(true)
       }
@@ -47,7 +37,7 @@ function Chat_Content() {
     }
     async function getData()
     {
-      let results = await fetch(`https://chat-server-production-d84a.up.railway.app/chat`,{}).then(response => response.json())
+      let results = await fetch(`https://chat-server-production-d84a.up.railway.app/chat?`+params).then(response => response.json())
             .then(json => {return json});
             setContent(results)
     }
@@ -56,8 +46,9 @@ function Chat_Content() {
       
       const result = fetch('https://chat-server-production-d84a.up.railway.app/chat/post', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({name: nameBox, message: messageBox, time: updateTime()})
+        headers: {'Content-Type': 'application/json',},
+        body: JSON.stringify({collection:room, name: nameBox, message: messageBox, time: getTime()}),
+        
     });
 
     }
@@ -71,7 +62,7 @@ function Chat_Content() {
     }, 10000);},[]);
     return (
       <>
-      
+      <div className="button_back"><button className="button" onClick={()=>{props.room_set("")}}>Go back</button></div>
       <div className="chat_content">
       {content.map((mess) => (
         <div key={mess.id} className="message" style={stringToColour(mess.name)}>
