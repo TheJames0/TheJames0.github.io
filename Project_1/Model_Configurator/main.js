@@ -32,7 +32,7 @@ camera.position.set(0, 2, 10);
 //setup
 const textureLoader = new THREE.TextureLoader();
 //
-renderer.setPixelRatio(1);
+renderer.setPixelRatio(2.5);
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor( 0xffffff, 0);
 renderer.shadowMap.enabled = false;
@@ -294,7 +294,19 @@ function setMaterials()
       }
     }});
 }
+//Dynamic display stretching
+window.addEventListener('resize', function()
 
+{
+  onWindowResize();
+});
+function onWindowResize() {
+
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize( window.innerWidth, window.innerHeight );
+}
 function animate() {
   requestAnimationFrame( animate );
   cubeCamera.update(renderer,scene);
