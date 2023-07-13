@@ -8,7 +8,7 @@
     height: fit-content;
     position: absolute;
     right: 0%;
-    top: 0%;
+    bottom: 0%;
     z-index:999;
 }
 .viewport_enlarge_button:hover{
@@ -21,7 +21,7 @@
     height: fit-content;
     position: absolute;
     right: 0%;
-    top: 0%;
+    bottom: 0%;
     z-index:999;
 }
 .toolbar-button{

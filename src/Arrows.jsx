@@ -26,7 +26,7 @@ const Arrows =(props) => {
     end={key} //or an id
     startAnchor={"auto"}
     endAnchor={"top"}
-    color="orangered"
+    color="#ff6200"
     dashness={{strokeLen: 15, nonStrokeLen: 20, animation:0}}
     showHead={false } />
     )
