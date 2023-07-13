@@ -134,7 +134,7 @@ const child1 = <Branch id = "1" key="3" text1="Project 1" text2="Car-Configurato
 
 const viewport2 = <Viewport id={"view2"} url="Project_2/chat/index.html" x={"-400"} y={"1020"} navCall={new navMenu_showState} />;
 const project2_description = <p >This is a basic persistent messaging system which works in near realtime and is constantly active, it currently supports basic text but could be extended to images and further content</p>
-const child17 = <Branch key="17" text1="Description"  x="-1000" y="1420"  mainbody={project2_description} myRef={new Branch_Ref}/>;
+const child17 = <Branch key="17" text1="Description"  x="-1000" y="1020"  mainbody={project2_description} myRef={new Branch_Ref}/>;
 const project2_description2 = <p >This system works by serving dynamic content from an external service using Express server and uses Rest API protocols. The express server has three services required, send and retrieve an update status and to send and retrieve message information. The express server then communicates with a MongoDB server when required to access or send new messages.</p>
 const child18 = <Branch key="18" text1="Implementation"  x="-2200" y="1420"  mainbody={project2_description2} myRef={new Branch_Ref}/>;
 const child4 = <Branch key="4" text1="Project" text2="Viewport" x="-1600" y="1420" viewport={viewport2} myRef={new Branch_Ref}/>;
